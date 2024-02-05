@@ -1,7 +1,7 @@
 tasks:
-  - init: ./gradlew clean build
+  - init: ./ContextMapper/app/gradlew clean build
 image:
-  file: .gitpod.Dockerfile
+  file: /ContextMapper/app/.gitpod.Dockerfile
 vscode:
   extensions:
     - contextmapper.context-mapper-vscode-extension
