@@ -17,24 +17,24 @@ ContextMap PDAContextMap {
 	contains GeolocationContext
 
 	/* Context relationship */
-	PropertyContext -> GeolocationContext
+	PropertyContext <- GeolocationContext
 	PropertyContext <-> RealStateCompanysContext
 	PropertyContext -> TransactionsContext
 	PropertyContext <-> RealStateHistoryContext
 	PropertyContext <-> UserContext
 
-	UserContext -> ContractContext
-	UserContext -> DigitalSignatureContext
+	UserContext <- ContractContext
+	UserContext <- DigitalSignatureContext
 	UserContext -> LoginContext
-	UserContext -> CustomerServiceContext
+	UserContext <- CustomerServiceContext
 	UserContext <- CRMContext
 
 	RealStateCompanysContext <-> TransactionsContext
 	RealStateCompanysContext <-> RealStateHistoryContext
 
-	ResearchContext -> PropertyContext
-	ResearchContext -> RealStateCompanysContext
-	ResearchContext -> UserContext
+	ResearchContext <- PropertyContext
+	ResearchContext <- RealStateCompanysContext
+	ResearchContext <- UserContext
 }
 
 BoundedContext PropertyContext implements RealStatePropertyDomain

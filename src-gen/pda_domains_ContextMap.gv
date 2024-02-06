@@ -1,28 +1,23 @@
 digraph "ContextMapGraph" {
 graph ["imagepath"="/tmp/GraphvizJava"]
-"CRMContext" ["margin"="0.3","orientation"="333","shape"="egg","fontsize"="16","style"="bold","label"="CRMContext\n","fontname"="sans-serif"]
-"UserContext" ["margin"="0.3","orientation"="330","shape"="egg","fontsize"="16","style"="bold","label"="UserContext\n","fontname"="sans-serif"]
-"DigitalSignatureContext" ["margin"="0.3","orientation"="226","shape"="egg","fontsize"="16","style"="bold","label"="DigitalSignatureContext\n","fontname"="sans-serif"]
-"ContractContext" ["margin"="0.3","orientation"="2","shape"="egg","fontsize"="16","style"="bold","label"="ContractContext\n","fontname"="sans-serif"]
-"LoginContext" ["margin"="0.3","orientation"="109","shape"="egg","fontsize"="16","style"="bold","label"="LoginContext\n","fontname"="sans-serif"]
-"CustomerServiceContext" ["margin"="0.3","orientation"="24","shape"="egg","fontsize"="16","style"="bold","label"="CustomerServiceContext\n","fontname"="sans-serif"]
-"GeolocationContext" ["margin"="0.3","orientation"="294","shape"="egg","fontsize"="16","style"="bold","label"="GeolocationContext\n","fontname"="sans-serif"]
-"PropertyContext" ["margin"="0.3","orientation"="328","shape"="egg","fontsize"="16","style"="bold","label"="PropertyContext\n","fontname"="sans-serif"]
-"TransactionsContext" ["margin"="0.3","orientation"="270","shape"="egg","fontsize"="16","style"="bold","label"="TransactionsContext\n","fontname"="sans-serif"]
-"RealStateCompanysContext" ["margin"="0.3","orientation"="328","shape"="egg","fontsize"="16","style"="bold","label"="RealStateCompanysContext\n","fontname"="sans-serif"]
-"RealStateHistoryContext" ["margin"="0.3","orientation"="300","shape"="egg","fontsize"="16","style"="bold","label"="RealStateHistoryContext\n","fontname"="sans-serif"]
-"ResearchContext" ["margin"="0.3","orientation"="121","shape"="egg","fontsize"="16","style"="bold","label"="ResearchContext\n","fontname"="sans-serif"]
+"CRMContext" ["margin"="0.3","orientation"="139","shape"="egg","fontsize"="16","style"="bold","label"="CRMContext\n","fontname"="sans-serif"]
+"UserContext" ["margin"="0.3","orientation"="70","shape"="egg","fontsize"="16","style"="bold","label"="UserContext\n","fontname"="sans-serif"]
+"DigitalSignatureContext" ["margin"="0.3","orientation"="176","shape"="egg","fontsize"="16","style"="bold","label"="DigitalSignatureContext\n","fontname"="sans-serif"]
+"LoginContext" ["margin"="0.3","orientation"="334","shape"="egg","fontsize"="16","style"="bold","label"="LoginContext\n","fontname"="sans-serif"]
+"CustomerServiceContext" ["margin"="0.3","orientation"="329","shape"="egg","fontsize"="16","style"="bold","label"="CustomerServiceContext\n","fontname"="sans-serif"]
+"ContractContext" ["margin"="0.3","orientation"="325","shape"="egg","fontsize"="16","style"="bold","label"="ContractContext\n","fontname"="sans-serif"]
+"GeolocationContext" ["margin"="0.3","orientation"="63","shape"="egg","fontsize"="16","style"="bold","label"="GeolocationContext\n","fontname"="sans-serif"]
+"PropertyContext" ["margin"="0.3","orientation"="64","shape"="egg","fontsize"="16","style"="bold","label"="PropertyContext\n","fontname"="sans-serif"]
+"RealStateCompanysContext" ["margin"="0.3","orientation"="321","shape"="egg","fontsize"="16","style"="bold","label"="RealStateCompanysContext\n","fontname"="sans-serif"]
+"TransactionsContext" ["margin"="0.3","orientation"="53","shape"="egg","fontsize"="16","style"="bold","label"="TransactionsContext\n","fontname"="sans-serif"]
+"RealStateHistoryContext" ["margin"="0.3","orientation"="348","shape"="egg","fontsize"="16","style"="bold","label"="RealStateHistoryContext\n","fontname"="sans-serif"]
+"ResearchContext" ["margin"="0.3","orientation"="83","shape"="egg","fontsize"="16","style"="bold","label"="ResearchContext\n","fontname"="sans-serif"]
 "CRMContext" -> "UserContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">D</td></tr>
 </table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">U</td></tr>
 </table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
 "UserContext" -> "DigitalSignatureContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
-<tr><td bgcolor="white">D</td></tr>
-</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
-<tr><td bgcolor="white">U</td></tr>
-</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
-"UserContext" -> "ContractContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">D</td></tr>
 </table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">U</td></tr>
@@ -37,32 +32,37 @@ graph ["imagepath"="/tmp/GraphvizJava"]
 </table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">U</td></tr>
 </table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
-"PropertyContext" -> "GeolocationContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+"ContractContext" -> "UserContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">D</td></tr>
 </table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">U</td></tr>
 </table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"PropertyContext" -> "UserContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
+"PropertyContext" -> "RealStateCompanysContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
 "PropertyContext" -> "TransactionsContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">D</td></tr>
 </table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">U</td></tr>
 </table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
-"PropertyContext" -> "RealStateCompanysContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
-"PropertyContext" -> "UserContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
-"PropertyContext" -> "RealStateHistoryContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
-"RealStateCompanysContext" -> "RealStateHistoryContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
-"RealStateCompanysContext" -> "TransactionsContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
-"ResearchContext" -> "PropertyContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+"PropertyContext" -> "GeolocationContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">D</td></tr>
 </table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">U</td></tr>
 </table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"PropertyContext" -> "RealStateHistoryContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
+"RealStateCompanysContext" -> "TransactionsContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
+"RealStateCompanysContext" -> "RealStateHistoryContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
 "ResearchContext" -> "RealStateCompanysContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">D</td></tr>
 </table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">U</td></tr>
 </table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
 "ResearchContext" -> "UserContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"ResearchContext" -> "PropertyContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">D</td></tr>
 </table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
 <tr><td bgcolor="white">U</td></tr>
