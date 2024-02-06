@@ -17,7 +17,6 @@ ContextMap PDAContextMap {
 	contains GeolocationContext
 
 	/* Context relationship */
-
 	PropertyContext -> GeolocationContext
 	PropertyContext <-> RealStateCompanysContext
 	PropertyContext -> TransactionsContext
@@ -221,4 +220,3 @@ Domain ThirdIntegration {
 	}
 
 }
-
