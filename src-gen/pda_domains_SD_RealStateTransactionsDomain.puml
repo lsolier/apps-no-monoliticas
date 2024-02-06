@@ -1,0 +1,21 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'RealStateTransactionsDomain' Core Domain" <<Rectangle>> {
+	class Transaction <<(E,DarkSeaGreen) Entity>> {
+		String id
+		String date
+		String end_date
+		String tenant
+		String business
+	}
+}
+legend left
+  This subdomain is part of the 'RealState' domain.
+
+  Subdominio empleado para el manejo de transacciones sobre un inmueble, incluyendo ventas, arrendamientos, subarrendamientos, etc...
+end legend
+
+
+@enduml

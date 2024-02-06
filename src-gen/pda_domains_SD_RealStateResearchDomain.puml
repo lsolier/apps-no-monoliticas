@@ -1,0 +1,21 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'RealStateResearchDomain' Core Domain" <<Rectangle>> {
+	class Research <<(E,DarkSeaGreen) Entity>> {
+		String name
+		String physical_properties
+		String property_size
+		String location
+		String url_photos
+	}
+}
+legend left
+  This subdomain is part of the 'RealState' domain.
+
+  Subdominio empleado para la investigación en el sector inmobiliaria.
+end legend
+
+
+@enduml

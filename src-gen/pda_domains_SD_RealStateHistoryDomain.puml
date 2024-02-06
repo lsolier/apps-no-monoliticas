@@ -1,0 +1,21 @@
+@startuml
+
+skinparam componentStyle uml2
+
+package "'RealStateHistoryDomain' Core Domain" <<Rectangle>> {
+	class RealStateHistory <<(E,DarkSeaGreen) Entity>> {
+		String id
+		String metric_type
+		String metric_value
+		String date
+		String real_state_property
+	}
+}
+legend left
+  This subdomain is part of the 'RealState' domain.
+
+  Subdominio empleado para el manejo del historial sobre las transacciones realizadas en real state, así como historicos comportamentales.
+end legend
+
+
+@enduml

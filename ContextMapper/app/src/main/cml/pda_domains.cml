@@ -1,3 +1,91 @@
-Domain Analitic {
-    
+Domain RealState {
+	domainVisionStatement= "Dominio que relaciona toda lo referente a propiedades en bienes raices"
+
+	Subdomain RealStateBusiness {
+		type = CORE_DOMAIN		
+		domainVisionStatement = "Subdominio empleado para el manejo de las inmobiliarias"
+
+		Entity Business {
+			String id
+			String location
+			String branch
+			String properties
+		}
+	}
+
+	Subdomain RealStateTransactionsDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio empleado para el manejo de transacciones sobre un inmueble, incluyendo ventas, arrendamientos, subarrendamientos, etc..."
+	
+		Entity Transaction {
+			String id
+			String date
+			String end_date
+			String tenant
+			String business
+		}
+
+	}
+
+	Subdomain RealStateHistoryDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio empleado para el manejo del historial sobre las transacciones realizadas en real state, así como historicos comportamentales."
+	
+		Entity RealStateHistory {
+			String id
+			String metric_type
+			String metric_value
+			String date
+			String real_state_property
+		}
+
+	}
+
+	Subdomain RealStateResearchDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio empleado para la investigación en el sector inmobiliaria."
+	
+		Entity Research {
+			String name
+			String physical_properties
+			String property_size
+			String location
+			String url_photos
+		}
+
+	}
+
+	Subdomain RealStateProjections {
+
+	}
+}
+
+Domain Laws {
+	domainVisionStatement="Dominio empleado para el manejo de la parte legal utilizada en los diferentes modelos de contratación y validación de clientes."+
+
+	Subdomain DigitalUserValidation {
+		type = GENERIC_DOMAIN
+		domainVisionStatement = "Subdominio empleado para la investigación en el sector inmobiliaria."
+	}
+
+	Subdomain ContractsDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio empleado para la investigación en el sector inmobiliaria."
+
+	}
+}
+
+Domain Users {
+	domainVisionStatement="Dominio empleado para la gertión de usuarios que son posibles clientes del sector inmobiliario"
+
+	Subdomain AuthenticationDomain {
+		type = GENERIC_DOMAIN
+		domainVisionStatement = "Subdominio empleado para la investigación en el sector inmobiliaria."
+	}
+
+	Subdomain UserDataDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio empleado para la investigación en el sector inmobiliaria."
+	}
+
 }
