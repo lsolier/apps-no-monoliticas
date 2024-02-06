@@ -25,7 +25,7 @@ ContextMap PDAContextMap {
 
 	UserContext <- ContractContext
 	UserContext <- DigitalSignatureContext
-	UserContext -> LoginContext
+	UserContext <-> LoginContext
 	UserContext <- CustomerServiceContext
 	UserContext <- CRMContext
 

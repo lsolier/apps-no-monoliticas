@@ -1,0 +1,33 @@
+digraph "ContextMapGraph" {
+graph ["imagepath"="/tmp/GraphvizJava"]
+"CustomerServiceContext" ["margin"="0.3","orientation"="109","shape"="egg","fontsize"="16","style"="bold","label"="CustomerServiceContext\n","fontname"="sans-serif"]
+"UserContext" ["margin"="0.3","orientation"="108","shape"="egg","fontsize"="16","style"="bold","label"="UserContext\n","fontname"="sans-serif"]
+"LoginContext" ["margin"="0.3","orientation"="126","shape"="egg","fontsize"="16","style"="bold","label"="LoginContext\n","fontname"="sans-serif"]
+"DigitalSignatureContext" ["margin"="0.3","orientation"="40","shape"="egg","fontsize"="16","style"="bold","label"="DigitalSignatureContext\n","fontname"="sans-serif"]
+"PropertyContext" ["margin"="0.3","orientation"="29","shape"="egg","fontsize"="16","style"="bold","label"="PropertyContext\n","fontname"="sans-serif"]
+"RealStateCompanysContext" ["margin"="0.3","orientation"="237","shape"="egg","fontsize"="16","style"="bold","label"="RealStateCompanysContext\n","fontname"="sans-serif"]
+"TransactionsContext" ["margin"="0.3","orientation"="274","shape"="egg","fontsize"="16","style"="bold","label"="TransactionsContext\n","fontname"="sans-serif"]
+"CustomerServiceContext" -> "UserContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"UserContext" -> "LoginContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"DigitalSignatureContext" -> "UserContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"PropertyContext" -> "RealStateCompanysContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
+"PropertyContext" -> "TransactionsContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"PropertyContext" -> "UserContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
+"RealStateCompanysContext" -> "TransactionsContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
+}

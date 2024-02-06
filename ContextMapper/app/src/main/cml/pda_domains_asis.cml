@@ -1,0 +1,137 @@
+ContextMap PDAContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = AS_IS
+
+	/* Bounded context to map */
+	contains PropertyContext
+	contains RealStateCompanysContext
+	contains TransactionsContext
+	contains DigitalSignatureContext
+	contains UserContext
+	contains CustomerServiceContext
+	contains LoginContext
+
+	/* Context relationship */
+	PropertyContext <-> RealStateCompanysContext
+	PropertyContext -> TransactionsContext
+	PropertyContext <-> UserContext
+
+	UserContext <- DigitalSignatureContext
+	UserContext <-> LoginContext
+	UserContext <- CustomerServiceContext
+
+	RealStateCompanysContext <-> TransactionsContext
+}
+
+BoundedContext PropertyContext implements RealStatePropertyDomain
+BoundedContext RealStateCompanysContext implements RealStateBusinessDomain
+BoundedContext TransactionsContext implements RealStateTransactionsDomain
+
+BoundedContext DigitalSignatureContext implements DigitalUserValidationDomain
+
+BoundedContext UserContext implements UserDataDomain
+BoundedContext CustomerServiceContext implements CustomerServiceDomain
+BoundedContext LoginContext implements AuthenticationDomain
+
+
+Domain RealState {
+	domainVisionStatement= "Dominio que relaciona toda lo referente a propiedades en bienes raices"
+
+	Subdomain RealStatePropertyDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio encargado de la gestión de inmuebles pertenecientes a bienes raices"
+		Entity Property {
+			String id
+			String property_type
+			String property_size
+			String property_location
+		}
+	}
+
+	Subdomain RealStateBusinessDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio empleado para el manejo de las inmobiliarias"
+		Entity Business {
+			String id
+			String location
+			String branch
+			String properties
+		}
+	}
+
+	Subdomain RealStateTransactionsDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio empleado para el manejo de transacciones sobre un inmueble, incluyendo ventas, arrendamientos, subarrendamientos, etc..."
+		Entity Transaction {
+			String id
+			String date
+			String end_date
+			String tenant
+			String business
+		}
+	}
+
+}
+
+Domain Laws {
+	domainVisionStatement="Dominio empleado para el manejo de la parte legal utilizada en los diferentes modelos de contratación y validación de clientes."
+
+	Subdomain DigitalUserValidationDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdominio empleado para la gestión de firmas digitales de los contratos de clientes."
+		Entity DigitalSignature {
+			String id
+			String sha_256
+			String user
+			String signature_state
+		}
+	}
+
+}
+
+Domain Users {
+	domainVisionStatement="Dominio empleado para la gertión de usuarios que son posibles clientes del sector inmobiliario"
+
+	Subdomain AuthenticationDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdominio empleado para el manejo de sesiones en el sistema."
+		Entity Login {
+			String id
+			String token
+			String init_validate
+			String end_validate
+		}
+		Entity Password {
+			String user
+			String password
+		}
+	}
+
+	Subdomain UserDataDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio empleado para el almacenamiento de la data concerniete a usuarios."
+		Entity User {
+			String id
+			String name
+			String last_name
+			String address
+		}
+		Entity UserReview {
+			String id
+			String user_reference
+			String score
+		}
+	}
+
+	Subdomain CustomerServiceDomain {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Subdominio empleado para el almacenamiento de la data concerniete a usuarios."
+		Entity PQRS {
+			String id
+			String pqrs_type
+			String application
+			String additional_data
+		}
+	}
+
+}
