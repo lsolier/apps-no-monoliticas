@@ -64,7 +64,7 @@ Domain Laws {
 			String id
 			String sha_256
 			String user
-			String state
+			String signature_state
 		}
 	}
 
@@ -122,7 +122,7 @@ Domain Users {
 
 		Entity UserReview {
 			String id
-			String reference
+			String user_reference
 			String score
 		}
 	}
@@ -133,7 +133,7 @@ Domain Users {
 
 		Entity PQRS {
 			String id
-			String type
+			String pqrs_type
 			String application
 			String additional_data
 		}
