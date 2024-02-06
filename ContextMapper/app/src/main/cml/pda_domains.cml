@@ -24,7 +24,6 @@ Domain RealState {
 			String tenant
 			String business
 		}
-
 	}
 
 	Subdomain RealStateHistoryDomain {
@@ -38,7 +37,6 @@ Domain RealState {
 			String date
 			String real_state_property
 		}
-
 	}
 
 	Subdomain RealStateResearchDomain {
@@ -52,25 +50,41 @@ Domain RealState {
 			String location
 			String url_photos
 		}
-
-	}
-
-	Subdomain RealStateProjections {
-
 	}
 }
 
 Domain Laws {
-	domainVisionStatement="Dominio empleado para el manejo de la parte legal utilizada en los diferentes modelos de contratación y validación de clientes."+
+	domainVisionStatement="Dominio empleado para el manejo de la parte legal utilizada en los diferentes modelos de contratación y validación de clientes."
 
 	Subdomain DigitalUserValidation {
-		type = GENERIC_DOMAIN
-		domainVisionStatement = "Subdominio empleado para la investigación en el sector inmobiliaria."
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdominio empleado para la gestión de firmas digitales de los contratos de clientes."
+
+		Entity DigitalSignature {
+			String id
+			String sha_256
+			String user
+			String state
+		}
 	}
 
 	Subdomain ContractsDomain {
 		type = CORE_DOMAIN
-		domainVisionStatement = "Subdominio empleado para la investigación en el sector inmobiliaria."
+		domainVisionStatement = "Subdominio empleado para la gestión y soporte de contratos diseñados para las transacciones de inmuebles."
+
+		Entity Contract{
+			String id
+			String contract_type
+			String contract_conditions
+			String init_date
+			String end_date
+		}
+
+		Entity ContratType {
+			String id
+			String name
+			String description
+		}
 
 	}
 }
@@ -79,13 +93,75 @@ Domain Users {
 	domainVisionStatement="Dominio empleado para la gertión de usuarios que son posibles clientes del sector inmobiliario"
 
 	Subdomain AuthenticationDomain {
-		type = GENERIC_DOMAIN
-		domainVisionStatement = "Subdominio empleado para la investigación en el sector inmobiliaria."
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdominio empleado para el manejo de sesiones en el sistema."
+
+		Entity Login {
+			String id
+			String token
+			String init_validate
+			String end_validate
+		}
+
+		Entity Password {
+			String user
+			String password
+		}
 	}
 
 	Subdomain UserDataDomain {
 		type = CORE_DOMAIN
-		domainVisionStatement = "Subdominio empleado para la investigación en el sector inmobiliaria."
+		domainVisionStatement = "Subdominio empleado para el almacenamiento de la data concerniete a usuarios."
+
+		Entity User {
+			String id
+			String name
+			String last_name
+			String address
+		}
+
+		Entity UserReview {
+			String id
+			String reference
+			String score
+		}
+	}
+
+	Subdomain CustomerService {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Subdominio empleado para el almacenamiento de la data concerniete a usuarios."
+
+		Entity PQRS {
+			String id
+			String type
+			String application
+			String additional_data
+		}
+	}
+}
+
+Domain ThirdIntegration {
+	domainVisionStatement="Dominio empleado para la integración con sistemas terceros"
+
+	Subdomain CRM {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdominio empleado para la gestión de relaciones con clientes."
+
+		Entity CRMAction {
+			String id
+			String contact_date
+			String observations
+		}
+	}
+
+	Subdomain Geolocation {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Subdominio empleado para la integración con servicios relacionados a la Geolocalizacion e información en registros publicos"
+
+		Entity Geolocation {
+			String id
+			String coordenates
+		}
 	}
 
 }
