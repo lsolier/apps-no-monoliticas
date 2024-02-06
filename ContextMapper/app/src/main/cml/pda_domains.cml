@@ -1,10 +1,77 @@
+ContextMap PDAContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+
+	/* Bounded context to map */
+	contains PropertyContext
+	contains RealStateCompanysContext
+	contains TransactionsContext
+	contains RealStateHistoryContext
+	contains ResearchContext
+	contains DigitalSignatureContext
+	contains ContractContext
+	contains UserContext
+	contains CustomerServiceContext
+	contains LoginContext
+	contains CRMContext
+	contains GeolocationContext
+
+	/* Context relationship */
+
+	PropertyContext -> GeolocationContext
+	PropertyContext <-> RealStateCompanysContext
+	PropertyContext -> TransactionsContext
+	PropertyContext <-> RealStateHistoryContext
+	PropertyContext <-> UserContext
+
+	UserContext -> ContractContext
+	UserContext -> DigitalSignatureContext
+	UserContext -> LoginContext
+	UserContext -> CustomerServiceContext
+	UserContext <- CRMContext
+
+	RealStateCompanysContext <-> TransactionsContext
+	RealStateCompanysContext <-> RealStateHistoryContext
+
+	ResearchContext -> PropertyContext
+	ResearchContext -> RealStateCompanysContext
+	ResearchContext -> UserContext
+}
+
+BoundedContext PropertyContext implements RealStatePropertyDomain
+BoundedContext RealStateCompanysContext implements RealStateBusinessDomain
+BoundedContext TransactionsContext implements RealStateTransactionsDomain
+BoundedContext RealStateHistoryContext implements RealStateHistoryDomain
+BoundedContext ResearchContext implements RealStateResearchDomain
+
+BoundedContext DigitalSignatureContext implements DigitalUserValidationDomain
+BoundedContext ContractContext implements ContractsDomain
+
+BoundedContext UserContext implements UserDataDomain
+BoundedContext CustomerServiceContext implements CustomerServiceDomain
+BoundedContext LoginContext implements AuthenticationDomain
+
+BoundedContext CRMContext implements CRMDomain
+BoundedContext GeolocationContext implements GeolocationDomain
+
+
 Domain RealState {
 	domainVisionStatement= "Dominio que relaciona toda lo referente a propiedades en bienes raices"
 
-	Subdomain RealStateBusiness {
-		type = CORE_DOMAIN		
-		domainVisionStatement = "Subdominio empleado para el manejo de las inmobiliarias"
+	Subdomain RealStatePropertyDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio encargado de la gestión de inmuebles pertenecientes a bienes raices"
+		Entity Property {
+			String id
+			String property_type
+			String property_size
+			String property_location
+		}
+	}
 
+	Subdomain RealStateBusinessDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio empleado para el manejo de las inmobiliarias"
 		Entity Business {
 			String id
 			String location
@@ -16,7 +83,6 @@ Domain RealState {
 	Subdomain RealStateTransactionsDomain {
 		type = CORE_DOMAIN
 		domainVisionStatement = "Subdominio empleado para el manejo de transacciones sobre un inmueble, incluyendo ventas, arrendamientos, subarrendamientos, etc..."
-	
 		Entity Transaction {
 			String id
 			String date
@@ -29,7 +95,6 @@ Domain RealState {
 	Subdomain RealStateHistoryDomain {
 		type = CORE_DOMAIN
 		domainVisionStatement = "Subdominio empleado para el manejo del historial sobre las transacciones realizadas en real state, así como historicos comportamentales."
-	
 		Entity RealStateHistory {
 			String id
 			String metric_type
@@ -42,7 +107,6 @@ Domain RealState {
 	Subdomain RealStateResearchDomain {
 		type = CORE_DOMAIN
 		domainVisionStatement = "Subdominio empleado para la investigación en el sector inmobiliaria."
-	
 		Entity Research {
 			String name
 			String physical_properties
@@ -51,15 +115,15 @@ Domain RealState {
 			String url_photos
 		}
 	}
+
 }
 
 Domain Laws {
 	domainVisionStatement="Dominio empleado para el manejo de la parte legal utilizada en los diferentes modelos de contratación y validación de clientes."
 
-	Subdomain DigitalUserValidation {
+	Subdomain DigitalUserValidationDomain {
 		type = GENERIC_SUBDOMAIN
 		domainVisionStatement = "Subdominio empleado para la gestión de firmas digitales de los contratos de clientes."
-
 		Entity DigitalSignature {
 			String id
 			String sha_256
@@ -71,7 +135,6 @@ Domain Laws {
 	Subdomain ContractsDomain {
 		type = CORE_DOMAIN
 		domainVisionStatement = "Subdominio empleado para la gestión y soporte de contratos diseñados para las transacciones de inmuebles."
-
 		Entity Contract{
 			String id
 			String contract_type
@@ -79,14 +142,13 @@ Domain Laws {
 			String init_date
 			String end_date
 		}
-
 		Entity ContratType {
 			String id
 			String name
 			String description
 		}
-
 	}
+
 }
 
 Domain Users {
@@ -95,14 +157,12 @@ Domain Users {
 	Subdomain AuthenticationDomain {
 		type = GENERIC_SUBDOMAIN
 		domainVisionStatement = "Subdominio empleado para el manejo de sesiones en el sistema."
-
 		Entity Login {
 			String id
 			String token
 			String init_validate
 			String end_validate
 		}
-
 		Entity Password {
 			String user
 			String password
@@ -112,14 +172,12 @@ Domain Users {
 	Subdomain UserDataDomain {
 		type = CORE_DOMAIN
 		domainVisionStatement = "Subdominio empleado para el almacenamiento de la data concerniete a usuarios."
-
 		Entity User {
 			String id
 			String name
 			String last_name
 			String address
 		}
-
 		Entity UserReview {
 			String id
 			String user_reference
@@ -127,10 +185,9 @@ Domain Users {
 		}
 	}
 
-	Subdomain CustomerService {
+	Subdomain CustomerServiceDomain {
 		type = SUPPORTING_DOMAIN
 		domainVisionStatement = "Subdominio empleado para el almacenamiento de la data concerniete a usuarios."
-
 		Entity PQRS {
 			String id
 			String pqrs_type
@@ -138,15 +195,15 @@ Domain Users {
 			String additional_data
 		}
 	}
+
 }
 
 Domain ThirdIntegration {
 	domainVisionStatement="Dominio empleado para la integración con sistemas terceros"
 
-	Subdomain CRM {
+	Subdomain CRMDomain {
 		type = GENERIC_SUBDOMAIN
 		domainVisionStatement = "Subdominio empleado para la gestión de relaciones con clientes."
-
 		Entity CRMAction {
 			String id
 			String contact_date
@@ -154,10 +211,9 @@ Domain ThirdIntegration {
 		}
 	}
 
-	Subdomain Geolocation {
+	Subdomain GeolocationDomain {
 		type = SUPPORTING_DOMAIN
 		domainVisionStatement = "Subdominio empleado para la integración con servicios relacionados a la Geolocalizacion e información en registros publicos"
-
 		Entity Geolocation {
 			String id
 			String coordenates
@@ -165,3 +221,4 @@ Domain ThirdIntegration {
 	}
 
 }
+
