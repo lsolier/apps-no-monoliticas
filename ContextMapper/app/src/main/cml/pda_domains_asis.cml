@@ -20,7 +20,7 @@ ContextMap PDAContextMap {
 	UserContext <-> LoginContext
 	UserContext <- CustomerServiceContext
 
-	RealStateCompanysContext <-> TransactionsContext
+	RealStateCompanysContext -> TransactionsContext
 }
 
 BoundedContext PropertyContext implements RealStatePropertyDomain
