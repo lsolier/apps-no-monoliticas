@@ -21,6 +21,6 @@ class ServicioCompania(Servicio):
         compania: Compania = self.fabrica_companias.crear_objeto(compania_dto, MapeadorCompania())
 
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioReservas.__class__)
-        repositorio.agregar(reserva)
+        repositorio.agregar(compania)
 
-        return self.fabrica_vuelos.crear_objeto(reserva, MapeadorReserva())
+        return self.fabrica_vuelos.crear_objeto(compania, MapeadorReserva())

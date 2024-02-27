@@ -45,15 +45,14 @@ class MapeadorCompania(RepMap):
         fecha_actualizacion = entidad.fecha_actualizacion.strftime(self._FORMATO_FECHA)
         _id = str(entidad.id)
 
-        return CompaniaDTO(fecha_creacion, fecha_actualizacion, _id, list())
+        return CompaniaDTO()
 
     def dto_a_entidad(self, dto: CompaniaDTO) -> Compania:
-        reserva = Compania()
-        reserva.itinerarios = list()
+        compania = Compania()
 
         itinerarios_dto: list[ItinerarioDTO] = dto.itinerarios
 
         for itin in itinerarios_dto:
-            reserva.itinerarios.append(self._procesar_itinerario(itin))
+            compania.itinerarios.append(self._procesar_itinerario(itin))
         
-        return reserva
+        return compania
