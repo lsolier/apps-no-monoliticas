@@ -25,13 +25,13 @@ pip3 install -r requirements.txt
 ```
 
 ```bash
-flask --app src/propiedadlapes/api run
+flask --app src/propiedadalpes/api run
 ```
 
 Siempre puede ejecutarlo en modo DEBUG:
 
 ```bash
-flask --app src/propiedadlapes/api --debug run
+flask --app src/propiedadalpes/api --debug run
 ```
 
 
@@ -53,12 +53,12 @@ Los siguientes JSON pueden ser usados para probar el API:
     "contactos_clave": [
         {
             "nombre": "Edgar Vivar Villanueva",
-            "numero_telefono": "+57876543786",
+            "numero_telefono": "+57876543786"
         },
         {
             "nombre": "Roberto Gomez Bolaños",
-            "numero_telefono": "+5715551234",
-        },
+            "numero_telefono": "+5715551234"
+        }
     ],
     "sucursales": [
         {

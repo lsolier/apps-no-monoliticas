@@ -6,28 +6,42 @@ En este archivo usted encontrará las entidades del dominio de vuelos
 
 from __future__ import annotations
 from dataclasses import dataclass, field
+from itertools import groupby
 
-import aeroalpes.modulos.vuelos.dominio.objetos_valor as ov
-from aeroalpes.seedwork.dominio.entidades import Locacion, AgregacionRaiz, Entidad
-
-@dataclass
-class Compania(AgregacionRaiz):
-    codigo: ov.Codigo = field(default_factory=ov.Codigo)
-    nombre: ov.NombreAero = field(default_factory=ov.NombreAero)
-
-    def __str__(self) -> str:
-        return self.codigo.codigo.upper()
-
-@dataclass
-class Sucursal(Entidad):
-    codigo: ov.Codigo = field(default_factory=ov.Codigo)
-    nombre: ov.NombreAero = field(default_factory=ov.NombreAero)
-    itinerarios: list[ov.Itinerario] = field(default_factory=list[ov.Itinerario])
-
-    def obtener_itinerarios(self, odos: list[Odo], parametros: ParametroBusca):
-        return self.itinerarios
+import propiedadalpes.modulos.companias.dominio.objetos_valor as ov
+from propiedadalpes.seedwork.dominio.entidades import AgregacionRaiz, Entidad
 
 @dataclass
 class Contacto(Entidad):
-    clase: ov.Clase = field(default_factory=ov.Clase)
-    tipo: ov.TipoPasajero = field(default_factory=ov.TipoPasajero)
+    nombre: str = field(default_factory=str)
+    numero_telefono: str = field(default_factory=str)
+
+@dataclass
+class Sucursal(Entidad):
+    departamento: str = field(default_factory=str)
+    distrito: str = field(default_factory=str)
+    direcciones: list[ov.Direccion] = field(default_factory=list)
+
+@dataclass
+class Compania(AgregacionRaiz):
+    nombre: str = field(default_factory=str)
+    numero_identificacion: str = field(default_factory=str)
+    codigo_iso_pais: str = field(default_factory=str)
+    contactos: list[Contacto] = field(default_factory=list)
+    sucursales: list[Sucursal] = field(default_factory=list)
+
+    def obtener_sucursales_por_departamento(self, departamento: str):
+        sucursales_por_departamento: list[Sucursal] = sorted(self.sucursales,  key=lambda sucural: sucural.departamento)
+        sucursales_agrupadas = {}
+        for clave, grupo in groupby(sucursales_por_departamento, lambda sucural: sucural.departamento):
+            info_agrupada = {clave : list(grupo)}
+            sucursales_agrupadas[clave] = info_agrupada
+        return sucursales_agrupadas[departamento]
+    
+    def obtener_sucursales_por_distrito(self, distrito: str):
+        sucursales_por_distrito: list[Sucursal] = sorted(self.sucursales,  key=lambda sucural: sucural.distrito)
+        sucursales_agrupadas = {}
+        for clave, grupo in groupby(sucursales_por_distrito, lambda sucural: sucural.distrito):
+            info_agrupada = {clave : list(grupo)}
+            sucursales_agrupadas[clave] = info_agrupada
+        return sucursales_agrupadas[distrito]

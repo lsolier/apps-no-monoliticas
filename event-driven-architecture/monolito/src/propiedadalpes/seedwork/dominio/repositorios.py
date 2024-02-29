@@ -30,6 +30,10 @@ class Repositorio(ABC):
     def eliminar(self, entity_id: UUID):
         ...
 
+    @abstractmethod
+    def existe_por_numero_id_y_pais(self, numero_identificacion: str, codigo_iso_pais: str):
+        ...
+
 
 class Mapeador(ABC):
     @abstractmethod

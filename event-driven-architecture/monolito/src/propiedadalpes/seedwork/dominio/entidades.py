@@ -36,9 +36,3 @@ class Entidad:
 @dataclass
 class AgregacionRaiz(Entidad, ValidarReglasMixin):
     ...
-
-
-@dataclass
-class Locacion(Entidad):
-    def __str__(self) -> str:
-        ...

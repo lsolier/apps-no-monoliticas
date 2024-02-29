@@ -1,5 +1,8 @@
 from propiedadalpes.seedwork.aplicacion.servicios import Servicio
 from propiedadalpes.modulos.companias.infraestructura.fabricas import FabricaRepositorio
+from propiedadalpes.modulos.companias.dominio.fabricas import FabricaCompanias
+from propiedadalpes.modulos.companias.dominio.repositorios import RepositorioCompanias
+from propiedadalpes.modulos.companias.dominio.entidades import Compania
 from .dto import CompaniaDTO
 from .mapeadores import MapeadorCompania
 
@@ -18,9 +21,11 @@ class ServicioCompania(Servicio):
         return self._fabrica_companias
     
     def ingestar_compania(self, compania_dto: CompaniaDTO) -> CompaniaDTO:
-        compania: Compania = self.fabrica_companias.crear_objeto(compania_dto, MapeadorCompania())
+        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioCompanias.__class__)
+        existe_compania_en_pais: bool = repositorio.existe_por_numero_id_y_pais(compania_dto.numero_identificacion, compania_dto.codigo_iso_pais)
 
-        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioReservas.__class__)
+        compania: Compania = self.fabrica_companias.crear_objeto2(compania_dto, existe_compania_en_pais, MapeadorCompania())
+
         repositorio.agregar(compania)
 
-        return self.fabrica_vuelos.crear_objeto(compania, MapeadorReserva())
+        return self.fabrica_companias.crear_objeto(compania, MapeadorCompania())

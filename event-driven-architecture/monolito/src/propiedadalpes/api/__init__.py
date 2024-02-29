@@ -16,6 +16,7 @@ def create_app(configuracion=None):
     app.config['SQLALCHEMY_DATABASE_URI'] =\
             'sqlite:///' + os.path.join(basedir, 'database.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config["CACHE_TYPE"] = "null"
 
      # Inicializa la DB
     from propiedadalpes.config.db import init_db
@@ -32,7 +33,7 @@ def create_app(configuracion=None):
     from . import companias
 
     # Registro de Blueprints
-    app.register_blueprint(vuelos.bp)
+    app.register_blueprint(companias.bp)
 
     @app.route("/spec")
     def spec():

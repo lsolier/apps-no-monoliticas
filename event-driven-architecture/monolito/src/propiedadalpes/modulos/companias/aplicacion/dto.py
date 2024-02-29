@@ -27,4 +27,4 @@ class CompaniaDTO(DTO):
     numero_identificacion: str = field(default_factory=str)
     codigo_iso_pais: str = field(default_factory=str)
     contactos: list[ContactoDTO] = field(default_factory=list)
-    sucursales: list[ContactoDTO] = field(default_factory=list)
+    sucursales: list[SucursalDTO] = field(default_factory=list)
