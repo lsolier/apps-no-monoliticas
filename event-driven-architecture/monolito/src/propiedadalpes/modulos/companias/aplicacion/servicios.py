@@ -32,4 +32,5 @@ class ServicioCompania(Servicio):
     
     def obtener_compania_por_id(self, id) -> CompaniaDTO:
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioCompanias.__class__)
-        return repositorio.obtener_por_id(id).__dict__
+        compania: Compania = repositorio.obtener_por_id(id)
+        return self.fabrica_companias.crear_objeto(compania, MapeadorCompania())

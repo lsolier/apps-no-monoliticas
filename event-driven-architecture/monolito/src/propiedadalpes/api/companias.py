@@ -29,8 +29,10 @@ def ingestar():
 @bp.route('/compania/<id>', methods=('GET',))
 def dar_compania(id=None):
     if id:
+        map_compania = MapeadorCompaniaDTOJson()
         sr = ServicioCompania()
         
-        return sr.obtener_compania_por_id(id)
+        dto_final = sr.obtener_compania_por_id(id)
+        return map_compania.dto_a_externo(dto_final)
     else:
         return [{'message': 'GET!'}]

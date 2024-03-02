@@ -72,6 +72,7 @@ class MapeadorCompania(Mapeador):
     def _procesar_contacto_dto(self, dto: ContactoDTO) -> Contacto:
         contacto = Contacto(dto.id, dto.fecha_creacion, dto.fecha_actualizacion)
         contacto.nombre = dto.nombre
+        contacto.numero_telefono = dto.numero_telefono
         contacto.fecha_actualizacion = dto.fecha_actualizacion
         return contacto
 
