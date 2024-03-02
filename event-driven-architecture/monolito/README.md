@@ -93,7 +93,54 @@ Los siguientes JSON pueden ser usados para probar el API:
 coverage run -m pytest
 ```
 
-# Ver reporte de covertura
+## Ver reporte de covertura
 ```bash
 coverage report
+```
+
+## Ejecucion de comando y consultas
+
+- **Endpoint**: `/coleccion/companias-comando`
+- **Método**: `POST`
+- **Headers**: `Content-Type='aplication/json'`
+
+```json
+{
+    "nombre": "REMAX STRATUM Q S.A.S.",
+    "numero_identificacion": "NIT901253697-7",
+    "codigo_iso_pais": "COL",
+    "contactos_clave": [
+        {
+            "nombre": "Edgar Vivar Villanueva",
+            "numero_telefono": "+57876543786"
+        },
+        {
+            "nombre": "Roberto Gomez Bolaños",
+            "numero_telefono": "+5715551234"
+        }
+    ],
+    "sucursales": [
+        {
+            "departamento": "Antioquia",
+            "distrito": "Medellin",
+            "direcciones": [
+                {
+                    "nombre": "Avenida las perlas",
+                    "numero": 150,
+                    "codigo_postal": "050001"
+                },
+                {
+                    "nombre": "Avenida alamedas",
+                    "numero": 250,
+                    "codigo_postal": "050501"
+                }
+            ]
+        }
+    ]
+}
+```
+
+## Depliegue de PULSAR
+```bash
+docker-compose --profile pulsar up
 ```

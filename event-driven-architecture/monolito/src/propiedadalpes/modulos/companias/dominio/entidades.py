@@ -7,6 +7,7 @@ En este archivo usted encontrará las entidades del dominio de vuelos
 from __future__ import annotations
 from dataclasses import dataclass, field
 from itertools import groupby
+from propiedadalpes.modulos.companias.dominio.eventos import CompaniaIngestada
 
 import propiedadalpes.modulos.companias.dominio.objetos_valor as ov
 from propiedadalpes.seedwork.dominio.entidades import AgregacionRaiz, Entidad
@@ -24,11 +25,22 @@ class Sucursal(Entidad):
 
 @dataclass
 class Compania(AgregacionRaiz):
+    estado: ov.EstadoCompania = field(default=ov.EstadoCompania.INGESTADA)
     nombre: str = field(default_factory=str)
     numero_identificacion: str = field(default_factory=str)
     codigo_iso_pais: str = field(default_factory=str)
     contactos: list[Contacto] = field(default_factory=list)
     sucursales: list[Sucursal] = field(default_factory=list)
+
+    def ingestar_compania(self, compania: Compania):
+        self.estado = compania.estado
+        self.nombre = compania.nombre
+        self.numero_identificacion = compania.numero_identificacion
+        self.codigo_iso_pais = compania.codigo_iso_pais
+        self.contactos = compania.contactos
+        self.sucursales = compania.sucursales
+
+        self.agregar_evento(CompaniaIngestada(id_compania=self.id, estado=self.estado.name, fecha_creacion=self.fecha_creacion))
 
     def obtener_sucursales_por_departamento(self, departamento: str):
         sucursales_por_departamento: list[Sucursal] = sorted(self.sucursales,  key=lambda sucural: sucural.departamento)
