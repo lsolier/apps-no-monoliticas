@@ -87,18 +87,7 @@ Los siguientes JSON pueden ser usados para probar el API:
 - **Método**: `GET`
 - **Headers**: `Content-Type='aplication/json'`
 
-## Ejecutar pruebas
-
-```bash
-coverage run -m pytest
-```
-
-## Ver reporte de covertura
-```bash
-coverage report
-```
-
-## Ejecucion de comando y consultas
+# Ejecucion de comando y consultas
 
 - **Endpoint**: `/coleccion/companias-comando`
 - **Método**: `POST`
@@ -139,6 +128,11 @@ coverage report
     ]
 }
 ```
+### Ver Reserva(s)
+
+- **Endpoint**: `/coleccion/companias-query/{id}`
+- **Método**: `GET`
+- **Headers**: `Content-Type='aplication/json'`
 
 ## Depliegue de PULSAR
 ```bash
