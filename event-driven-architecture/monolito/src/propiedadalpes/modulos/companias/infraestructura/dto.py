@@ -17,23 +17,16 @@ class Contacto(db.Model):
     numero_telefono = db.Column(db.String, nullable=False)
     fecha_creacion = db.Column(db.DateTime, nullable=False)
     fecha_actualizacion = db.Column(db.DateTime, nullable=False)
-    __table_args__ = (
-        db.UniqueConstraint('nombre', 'numero_telefono', name='_contaco_nombre_numero_telefono_uc'),
-    )
 
 class Sucursal(db.Model):
     __tablename__ = "sucursales"
-    id = db.Column(db.String, primary_key=True)
-    departamento = db.Column(db.String, nullable=False)
-    distrito = db.Column(db.String, nullable=False)
-    direccion = db.Column(db.String, nullable=False)
-    codigo_postal = db.Column(db.String, nullable=False)
-    fecha_creacion = db.Column(db.DateTime, nullable=False)
-    fecha_actualizacion = db.Column(db.DateTime, nullable=False)
-    parent_id = db.Column(db.Integer, db.ForeignKey("companias.id"))
-    __table_args__ = (
-        db.UniqueConstraint('departamento', 'distrito', 'direccion', 'codigo_postal', name='_sucursal_uc'),
-    )
+    departamento = db.Column(db.String, nullable=False, primary_key=True)
+    distrito = db.Column(db.String, nullable=False, primary_key=True)
+    direccion = db.Column(db.String, nullable=False, primary_key=True)
+    codigo_postal = db.Column(db.String, nullable=False, primary_key=True)
+    fecha_creacion = db.Column(db.DateTime, nullable=False, primary_key=True)
+    fecha_actualizacion = db.Column(db.DateTime, nullable=False, primary_key=True)
+    compania_id = db.Column(db.Integer, db.ForeignKey("companias.id"), primary_key=True)
 
 class Compania(db.Model):
     __tablename__ = "companias"

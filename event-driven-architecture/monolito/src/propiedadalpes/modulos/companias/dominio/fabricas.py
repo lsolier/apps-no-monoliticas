@@ -22,7 +22,7 @@ class FabricaCompanias(Fabrica):
         return compania
 
 
-    def crear_objeto2(self, obj: any, existe_compania_en_pais:bool, mapeador: Mapeador) -> any:
+    def crear_objeto_entidad(self, obj: any, existe_compania_en_pais:bool, mapeador: Mapeador) -> any:
         if mapeador.obtener_tipo() == Compania.__class__:
             return self._crear_objeto(obj, existe_compania_en_pais, mapeador)
         else:

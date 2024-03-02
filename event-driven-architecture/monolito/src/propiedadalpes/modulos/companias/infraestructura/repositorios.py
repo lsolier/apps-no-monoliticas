@@ -23,9 +23,9 @@ class RepositorioCompaniasSQLite(RepositorioCompanias):
         return self._fabrica_companias
 
     def obtener_por_id(self, id: UUID) -> Compania:
-        # TODO
-        raise NotImplementedError
-
+        reserva_dto = db.session.query(CompaniaDTO).filter_by(id=str(id)).one()
+        return self._fabrica_companias.crear_objeto_entidad(reserva_dto, False, MapeadorCompania())
+    
     def obtener_todos(self) -> list[Compania]:
         # TODO
         raise NotImplementedError

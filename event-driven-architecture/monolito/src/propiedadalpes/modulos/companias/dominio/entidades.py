@@ -34,14 +34,12 @@ class Compania(AgregacionRaiz):
         sucursales_por_departamento: list[Sucursal] = sorted(self.sucursales,  key=lambda sucural: sucural.departamento)
         sucursales_agrupadas = {}
         for clave, grupo in groupby(sucursales_por_departamento, lambda sucural: sucural.departamento):
-            info_agrupada = {clave : list(grupo)}
-            sucursales_agrupadas[clave] = info_agrupada
+            sucursales_agrupadas[clave] = list(grupo)
         return sucursales_agrupadas[departamento]
     
     def obtener_sucursales_por_distrito(self, distrito: str):
         sucursales_por_distrito: list[Sucursal] = sorted(self.sucursales,  key=lambda sucural: sucural.distrito)
         sucursales_agrupadas = {}
         for clave, grupo in groupby(sucursales_por_distrito, lambda sucural: sucural.distrito):
-            info_agrupada = {clave : list(grupo)}
-            sucursales_agrupadas[clave] = info_agrupada
+            sucursales_agrupadas[clave] = list(grupo)
         return sucursales_agrupadas[distrito]

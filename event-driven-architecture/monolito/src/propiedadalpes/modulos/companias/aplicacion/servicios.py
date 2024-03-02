@@ -24,8 +24,12 @@ class ServicioCompania(Servicio):
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioCompanias.__class__)
         existe_compania_en_pais: bool = repositorio.existe_por_numero_id_y_pais(compania_dto.numero_identificacion, compania_dto.codigo_iso_pais)
 
-        compania: Compania = self.fabrica_companias.crear_objeto2(compania_dto, existe_compania_en_pais, MapeadorCompania())
+        compania: Compania = self.fabrica_companias.crear_objeto_entidad(compania_dto, existe_compania_en_pais, MapeadorCompania())
 
         repositorio.agregar(compania)
 
         return self.fabrica_companias.crear_objeto(compania, MapeadorCompania())
+    
+    def obtener_compania_por_id(self, id) -> CompaniaDTO:
+        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioCompanias.__class__)
+        return repositorio.obtener_por_id(id).__dict__

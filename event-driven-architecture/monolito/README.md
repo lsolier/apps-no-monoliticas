@@ -41,7 +41,7 @@ Los siguientes JSON pueden ser usados para probar el API:
 
 ### 
 
-- **Endpoint**: `/companias/coleccion`
+- **Endpoint**: `/coleccion/companias`
 - **Método**: `POST`
 - **Headers**: `Content-Type='aplication/json'`
 
@@ -69,6 +69,11 @@ Los siguientes JSON pueden ser usados para probar el API:
                     "nombre": "Avenida las perlas",
                     "numero": 150,
                     "codigo_postal": "050001"
+                },
+                {
+                    "nombre": "Avenida alamedas",
+                    "numero": 250,
+                    "codigo_postal": "050501"
                 }
             ]
         }
@@ -78,7 +83,7 @@ Los siguientes JSON pueden ser usados para probar el API:
 
 ### Ver Reserva(s)
 
-- **Endpoint**: `/companias/coleccion/{id}`
+- **Endpoint**: `/coleccion/companias/{id}`
 - **Método**: `GET`
 - **Headers**: `Content-Type='aplication/json'`
 

@@ -31,6 +31,6 @@ def dar_compania(id=None):
     if id:
         sr = ServicioCompania()
         
-        return sr.obtener_reserva_por_id(id)
+        return sr.obtener_compania_por_id(id)
     else:
         return [{'message': 'GET!'}]
