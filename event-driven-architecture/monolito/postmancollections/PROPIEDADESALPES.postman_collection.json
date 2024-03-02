@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "b8266021-017d-40a0-8bb1-5ff4eb886033",
+		"name": "PROPIEDADESALPES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3361414"
+	},
+	"item": [
+		{
+			"name": "companias",
+			"item": [
+				{
+					"name": "ingestar compania",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"REMAX STRATUM Q S.A.S.\",\n    \"numero_identificacion\": \"NIT901253697-7\",\n    \"codigo_iso_pais\": \"COL\",\n    \"contactos_clave\": [\n        {\n            \"nombre\": \"Edgar Vivar Villanueva\",\n            \"numero_telefono\": \"+57876543786\"\n        },\n        {\n            \"nombre\": \"Roberto Gomez Bolaños\",\n            \"numero_telefono\": \"+5715551234\"\n        }\n    ],\n    \"sucursales\": [\n        {\n            \"departamento\": \"Antioquia\",\n            \"distrito\": \"Medellin\",\n            \"direcciones\": [\n                {\n                    \"nombre\": \"Avenida las perlas\",\n                    \"numero\": 150,\n                    \"codigo_postal\": \"050001\"\n                },\n                {\n                    \"nombre\": \"Avenida alamedas\",\n                    \"numero\": 250,\n                    \"codigo_postal\": \"050501\"\n                }\n            ]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/colecciones/compania",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"colecciones",
+								"compania"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener campania por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/colecciones/compania/70a69f53-85ec-40d0-a207-559a8ec6cca6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"colecciones",
+								"compania",
+								"70a69f53-85ec-40d0-a207-559a8ec6cca6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
