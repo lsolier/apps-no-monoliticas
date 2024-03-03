@@ -6,6 +6,9 @@ encargados de la transformación entre formatos de dominio y DTOs
 """
 from dataclasses import asdict
 from itertools import groupby
+from propiedadalpes.modulos.companias.dominio.eventos import CompaniaIngestada, EventoCompania
+from propiedadalpes.modulos.companias.infraestructura.despachadores import unix_time_millis
+from propiedadalpes.modulos.companias.infraestructura.excepciones import NoExisteImplementacionParaTipoFabricaExcepcion
 
 from propiedadalpes.seedwork.dominio.repositorios import Mapeador
 from propiedadalpes.modulos.companias.dominio.objetos_valor import Direccion
@@ -115,3 +118,65 @@ class MapeadorCompania(Mapeador):
         compania.sucursales = self._procesar_sucursales_dto(dto.sucursales)
 
         return compania
+    
+
+class MapadeadorEventosCompania(Mapeador):
+
+    # Versiones aceptadas
+    versions = ('v1',)
+
+    LATEST_VERSION = versions[0]
+
+    def __init__(self):
+        self.router = {
+            CompaniaIngestada: self._entidad_a_compania_ingestada,
+        }
+    
+    def obtener_tipo(self) -> type:
+        return EventoCompania.__class__
+    
+    def es_version_valida(self, version):
+        for v in self.versions:
+            if v == version:
+                return True
+        return False
+
+    def _entidad_a_compania_ingestada(self, entidad: CompaniaIngestada, version=LATEST_VERSION):
+        def v1(evento):
+            print("debug evento --> ", evento)
+            from .schema.v1.eventos import CompaniaIngestadaPayload, EventoCompaniaIngestada
+
+            payload = CompaniaIngestadaPayload(
+                id_compania=str(evento.id_compania), 
+                estado=str(evento.estado), 
+                fecha_creacion=int(unix_time_millis(evento.fecha_creacion))
+            )
+            evento_integracion = EventoCompaniaIngestada(id=str(evento.id))
+            evento_integracion.id = str(evento.id)
+            evento_integracion.time = int(unix_time_millis(evento.fecha_creacion))
+            evento_integracion.specversion = str(version)
+            evento_integracion.type = 'CompaniaIngestada'
+            evento_integracion.datacontenttype = 'AVRO'
+            evento_integracion.service_name = 'propiedadalpes'
+            evento_integracion.data = payload
+
+            return evento_integracion
+                    
+        if not self.es_version_valida(version):
+            raise Exception(f'No se sabe procesar la version {version}')
+
+        if version == 'v1':
+            return v1(entidad) 
+        
+    def entidad_a_dto(self, entidad: EventoCompania, version=LATEST_VERSION) -> CompaniaDTO:
+        if not entidad:
+            raise NoExisteImplementacionParaTipoFabricaExcepcion
+        func = self.router.get(entidad.__class__, None)
+
+        if not func:
+            raise NoExisteImplementacionParaTipoFabricaExcepcion
+
+        return func(entidad, version=version)
+
+    def dto_a_entidad(self, dto: CompaniaDTO, version=LATEST_VERSION) -> Compania:
+        raise NotImplementedError

@@ -5,6 +5,7 @@ objetos complejos del dominio de vuelos
 
 """
 
+from propiedadalpes.modulos.companias.dominio.eventos import EventoCompania
 from .entidades import Compania
 from .reglas import IdentificadorCompaniaUnicoPorPais
 from .excepciones import TipoObjetoNoExisteEnDominioCompaniaExcepcion

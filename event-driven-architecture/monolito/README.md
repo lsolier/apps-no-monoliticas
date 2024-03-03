@@ -138,3 +138,6 @@ Los siguientes JSON pueden ser usados para probar el API:
 ```bash
 docker-compose --profile pulsar up
 ```
+
+## Implementacion de CDC
+

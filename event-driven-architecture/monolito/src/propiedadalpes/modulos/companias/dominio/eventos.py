@@ -4,6 +4,9 @@ import uuid
 from propiedadalpes.seedwork.dominio.eventos import (EventoDominio)
 from datetime import datetime
 
+class EventoCompania(EventoDominio):
+    ...
+
 @dataclass
 class CompaniaIngestada(EventoDominio):
     id_compania: uuid.UUID = None

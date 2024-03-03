@@ -2,7 +2,7 @@ from propiedadalpes.modulos.companias.aplicacion.comandos.base import IngestarCo
 from propiedadalpes.modulos.companias.aplicacion.dto import CompaniaDTO, ContactoDTO, SucursalDTO
 from propiedadalpes.modulos.companias.aplicacion.mapeadores import MapeadorCompania
 from propiedadalpes.modulos.companias.dominio.entidades import Compania
-from propiedadalpes.modulos.companias.dominio.repositorios import RepositorioCompanias
+from propiedadalpes.modulos.companias.dominio.repositorios import RepositorioCompanias, RepositorioEventosCompanias
 from propiedadalpes.seedwork.aplicacion.comandos import Comando
 from propiedadalpes.seedwork.aplicacion.comandos import ejecutar_commando as comando
 from propiedadalpes.seedwork.infraestructura.uow import UnidadTrabajoPuerto
@@ -37,16 +37,16 @@ class IngestarCompaniaHandler(IngestarCompaniaBaseHandler):
                                    comando.nombre, comando.numero_identificacion, comando.codigo_iso_pais, 
                                    comando.contactos, comando.sucursales)
         
-        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioCompanias.__class__)
+        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioCompanias)
         existe_compania_en_pais: bool = repositorio.existe_por_numero_id_y_pais(compania_dto.numero_identificacion, compania_dto.codigo_iso_pais)
 
         compania: Compania = self.fabrica_companias.crear_objeto_entidad(compania_dto, existe_compania_en_pais, MapeadorCompania())
         compania.ingestar_compania(compania)
 
-        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioCompanias.__class__)
+        repositorio_eventos = self.fabrica_repositorio.crear_objeto(RepositorioEventosCompanias)        
 
-        UnidadTrabajoPuerto.registrar_batch(repositorio.agregar, compania)
-        UnidadTrabajoPuerto.savepoint()
+        UnidadTrabajoPuerto.registrar_batch(repositorio.agregar, compania, repositorio_eventos_func=repositorio_eventos.agregar)
+        #UnidadTrabajoPuerto.savepoint()
         UnidadTrabajoPuerto.commit()
 
 @comando.register(IngestarCompania)

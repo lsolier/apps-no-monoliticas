@@ -8,16 +8,16 @@ objetos complejos en la capa de infraestructura del dominio de vuelos
 from dataclasses import dataclass, field
 from propiedadalpes.seedwork.dominio.fabricas import Fabrica
 from propiedadalpes.seedwork.dominio.repositorios import Repositorio
-from propiedadalpes.modulos.companias.dominio.repositorios import RepositorioCompanias, RepositorioContactos
-from .repositorios import RepositorioCompaniasSQLite, RepositorioContactosSQLite
+from propiedadalpes.modulos.companias.dominio.repositorios import RepositorioCompanias, RepositorioEventosCompanias
+from .repositorios import RepositorioCompaniasSQLite, RepositorioEventosCompaniaSQLAlchemy
 from .excepciones import ExcepcionFabrica
 
 @dataclass
 class FabricaRepositorio(Fabrica):
     def crear_objeto(self, obj: type, mapeador: any = None) -> Repositorio:
-        if obj == RepositorioCompanias.__class__:
+        if obj == RepositorioCompanias:
             return RepositorioCompaniasSQLite()
-        elif obj == RepositorioContactos.__class__:
-            return RepositorioContactosSQLite()
+        elif obj == RepositorioEventosCompanias:
+            return RepositorioEventosCompaniaSQLAlchemy()
         else:
             raise ExcepcionFabrica()

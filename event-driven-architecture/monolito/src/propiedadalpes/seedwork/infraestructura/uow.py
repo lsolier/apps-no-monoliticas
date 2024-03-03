@@ -5,6 +5,8 @@ from propiedadalpes.seedwork.dominio.entidades import AgregacionRaiz
 from pydispatch import dispatcher
 
 import pickle
+import logging
+import traceback
 
 
 class Lock(Enum):
@@ -58,18 +60,26 @@ class UnidadTrabajo(ABC):
     def savepoint(self):
         raise NotImplementedError
 
-    def registrar_batch(self, operacion, *args, lock=Lock.PESIMISTA, **kwargs):
+    def registrar_batch(self, operacion, *args, lock=Lock.PESIMISTA, repositorio_eventos_func=None, **kwargs):
         batch = Batch(operacion, lock, *args, **kwargs)
         self.batches.append(batch)
-        self._publicar_eventos_dominio(batch)
+        print("debug operacion-->", operacion)
+        print("debug repositorio_eventos_func-->", repositorio_eventos_func)
+        self._publicar_eventos_dominio(batch, repositorio_eventos_func)
 
-    def _publicar_eventos_dominio(self, batch):
+    def _publicar_eventos_dominio(self, batch, repositorio_eventos_func):
         for evento in self._obtener_eventos(batches=[batch]):
+            if repositorio_eventos_func:
+                repositorio_eventos_func(evento)
             dispatcher.send(signal=f'{type(evento).__name__}Dominio', evento=evento)
 
     def _publicar_eventos_post_commit(self):
-        for evento in self._obtener_eventos():
-            dispatcher.send(signal=f'{type(evento).__name__}Integracion', evento=evento)
+        try:
+            for evento in self._obtener_eventos():
+                dispatcher.send(signal=f'{type(evento).__name__}Integracion', evento=evento)
+        except:
+            logging.error('ERROR: Suscribiendose al tópico de eventos!')
+            traceback.print_exc()
 
 def is_flask():
     try:
@@ -133,6 +143,8 @@ class UnidadTrabajoPuerto:
 
     @staticmethod
     def registrar_batch(operacion, *args, lock=Lock.PESIMISTA, **kwargs):
+        for arg in args:
+            print("debug, que hay?-->", arg)
         uow = unidad_de_trabajo()
         uow.registrar_batch(operacion, *args, lock=lock, **kwargs)
         guardar_unidad_trabajo(uow)

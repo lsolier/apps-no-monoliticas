@@ -27,22 +27,21 @@ def comenzar_consumidor():
     # # Suscripción a comandos
     # threading.Thread(target=companias.suscribirse_a_comandos).start()
 
-def create_app(configuracion=None):
+def create_app(configuracion={}):
     # Init la aplicacion de Flask
     app = Flask(__name__, instance_relative_config=True)
 
-    # Configuracion de BD
-    app.config['SQLALCHEMY_DATABASE_URI'] =\
-            'sqlite:///' + os.path.join(basedir, 'database.db')
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
     app.secret_key = '9d58f98f-3ae8-4149-a09f-3a8c2012e32c'
     app.config['SESSION_TYPE'] = 'filesystem'
-    #app.config['TESTING'] = configuracion.get('TESTING')
+    app.config['TESTING'] = configuracion.get('TESTING')
 
 
      # Inicializa la DB
-    from propiedadalpes.config.db import init_db
+    from propiedadalpes.config.db import init_db, database_connection
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_connection(configuracion, basedir=basedir)
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
     init_db(app)
 
     from propiedadalpes.config.db import db
@@ -52,8 +51,8 @@ def create_app(configuracion=None):
 
     with app.app_context():
         db.create_all()
-        #if not app.config.get('TESTING'):
-        comenzar_consumidor()
+        if not app.config.get('TESTING'):
+            comenzar_consumidor()
 
      # Importa Blueprints
     from . import companias

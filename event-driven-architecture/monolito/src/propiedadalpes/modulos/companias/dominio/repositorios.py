@@ -11,5 +11,5 @@ from propiedadalpes.seedwork.dominio.repositorios import Repositorio
 class RepositorioCompanias(Repositorio, ABC):
     ...
 
-class RepositorioContactos(Repositorio, ABC):
+class RepositorioEventosCompanias(Repositorio, ABC):
     ...

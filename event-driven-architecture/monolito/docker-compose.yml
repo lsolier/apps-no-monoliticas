@@ -95,5 +95,27 @@ services:
     ports:
       - "6650:6650"
       - "8080:8080"
+    volumes:
+      - ./connectors/pulsar:/pulsar/connectors
     command: bash -c "bin/apply-config-from-env.py conf/broker.conf
       &&  exec bin/pulsar broker"
+
+  # MySQL8
+  db:
+    image: mysql:8
+    hostname: mysqldb
+    container_name: mysqldb
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=companias
+      - MYSQL_ROOT_PASSWORD=adminadmin
+    profiles: ["propiedadalpes", "db"]
+    networks:
+      - pulsar
+    ports:
+      - '3309:3306'
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  
