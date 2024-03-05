@@ -21,7 +21,7 @@ class ServicioUsuario(Servicio):
             return self._fabrica_usuarios
         
     def ingestar_usuario(self, usuario_dto: UsuarioDTO) -> UsuarioDTO:
-            repositorio = self.fabrica_repositorio.crear_objeto(RepositorioUsuarios.__class__)
+            repositorio = self.fabrica_repositorio.crear_objeto(RepositorioUsuarios)
 
             usuario: Usuario = self.fabrica_usuarios.crear_objeto_entidad(usuario_dto, MapeadorUsuario())
 

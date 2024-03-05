@@ -29,3 +29,15 @@ class RepositorioUsuariosSQLite(RepositorioUsuarios):
         usuario_dto = self._fabrica_usuarios.crear_objeto(usuario, MapeadorUsuario())
         db.session.add(usuario_dto)
         db.session.commit()
+
+    def actualizar(self, usuario: Usuario):
+        # TODO
+        raise NotImplementedError
+    
+    def eliminar(self, id: UUID):
+        # TODO
+        raise NotImplementedError
+    
+    def existe_por_numero_id_y_pais(self, str_1: str, str_2: str):
+        # TODO
+        raise NotImplementedError
