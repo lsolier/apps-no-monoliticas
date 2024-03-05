@@ -7,7 +7,6 @@ from flask import Response
 from propiedadalpes.modulos.usuarios.aplicacion.comandos.ingestar_usuario import IngestarUsuario
 from propiedadalpes.seedwork.aplicacion.comandos import ejecutar_commando
 from propiedadalpes.seedwork.aplicacion.queries import ejecutar_query
-from propiedadalpes.modulos.usuarios.aplicacion.mapeadores import MapeadorUsuarioDTOJson
 from propiedadalpes.modulos.usuarios.aplicacion.servicios import ServicioUsuario
 from propiedadalpes.seedwork.dominio.excepciones import ExcepcionDominio
 
@@ -17,8 +16,6 @@ bp = api.crear_blueprint('gestion_usuarios', '/gestion_usuarios')
 def ingestar():
     try:
         usuario_dict = request.json
-
-        map_usuario = MapeadorUsuarioDTOJson()
 
         sr = ServicioUsuario()
         dto_final = sr.ingestar_usuario(usuario_dict)
