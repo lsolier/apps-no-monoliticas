@@ -20,6 +20,6 @@ def ingestar():
         sr = ServicioUsuario()
         dto_final = sr.ingestar_usuario(usuario_dict)
 
-        return dto_final
+        return dto_final.__dict__
     except ExcepcionDominio as e:
         return Response(json.dumps(dict(error=str(e))), status=400, mimetype='application/json')
