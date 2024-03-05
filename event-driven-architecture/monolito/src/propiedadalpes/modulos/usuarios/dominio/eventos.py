@@ -10,5 +10,4 @@ class EventoUsuario(EventoDominio):
 @dataclass
 class UsuarioIngestado(EventoDominio):
     id_usuario: uuid.UUID = None
-    estado: str = None
     fecha_creacion: datetime = None

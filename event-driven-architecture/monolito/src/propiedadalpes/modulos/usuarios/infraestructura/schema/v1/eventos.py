@@ -5,7 +5,6 @@ import uuid
 
 class UsuarioIngestadoPayload(Record):
     id_usuario = String()
-    fecha_creacion = Long()
 
 class EventoUsuarioIngestado(EventoIntegracion):
     id = String(default=str(uuid.uuid4()))
