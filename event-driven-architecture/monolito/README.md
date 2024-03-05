@@ -141,3 +141,49 @@ docker-compose --profile pulsar up
 
 ## Implementacion de CDC
 
+### CDC & Debezium
+
+**Nota**: Antes de poder ejectuar todos los siguientes comandos DEBE tener la base de datos MySQL corriendo.
+
+```
+wget https://archive.apache.org/dist/pulsar/pulsar-2.10.1/connectors/pulsar-io-debezium-mysql-2.10.1.nar
+```
+
+### Ejecutar Debezium
+Abrir en una terminal:
+
+```bash
+docker exec -it broker bash
+```
+
+Ya dentro de la contenedora ejecute:
+```bash
+./bin/pulsar-admin source localrun --source-config-file /pulsar/connectors/debezium-mysql-source-config.yaml --destination-topic-name debezium-mysql-topic
+```
+
+### Consumir eventos Debezium
+
+Abrir en una terminal:
+
+```bash
+docker exec -it broker bash
+```
+
+Ya dentro de la contenedora ejecute:
+
+```bash
+./bin/pulsar-client consume -s "sub-datos" public/default/propiedadalpesdb.companias.usuarios_legado -n 0
+```
+
+### Consultar tópicos
+Abrir en una terminal:
+
+```bash
+docker exec -it broker bash
+```
+
+Ya dentro de la contenedora ejecute:
+
+```bash
+./bin/pulsar-admin topics list public/default
+```
