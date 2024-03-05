@@ -19,23 +19,10 @@ def ingestar():
         usuario_dict = request.json
 
         map_usuario = MapeadorUsuarioDTOJson()
-        usuario_dto = map_usuario.externo_a_dto(usuario_dict)
 
         sr = ServicioUsuario()
-        dto_final = sr.ingestar_usuario(usuario_dto)
+        dto_final = sr.ingestar_usuario(usuario_dict)
 
-        return map_usuario.dto_a_externo(dto_final)
+        return dto_final
     except ExcepcionDominio as e:
         return Response(json.dumps(dict(error=str(e))), status=400, mimetype='application/json')
-    
-@bp.route('/usuarios', methods=('GET',))
-@bp.route('/usuarios/<id>', methods=('GET',))
-def dar_usuario(id=None):
-    if id:
-        map_usuario = MapeadorUsuarioDTOJson()
-        sr = ServicioUsuario()
-        
-        dto_final = sr.obtener_usuario_por_id(id)
-        return map_usuario.dto_a_externo(dto_final)
-    else:
-        return [{'message': 'GET!'}]
