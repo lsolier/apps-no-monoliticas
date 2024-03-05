@@ -13,7 +13,7 @@ class MapeadorUsuario(RepMap):
     
     def dto_a_entidad(self, dto: UsuarioDTO) -> Usuario:
         usuario = Usuario()
-        usuario.nombre = dto.nombre
+        usuario.nombre = dto['nombre']
         return usuario
     
     def entidad_a_dto(self, entidad: Usuario) -> UsuarioDTO:
