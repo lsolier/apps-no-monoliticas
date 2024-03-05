@@ -25,7 +25,6 @@ class RepositorioUsuariosSQLite(RepositorioUsuarios):
         raise NotImplementedError
     
     def agregar(self, usuario: Usuario):
-        print("debug que tipo?-->", usuario)
         usuario_dto = self._fabrica_usuarios.crear_objeto(usuario, MapeadorUsuario())
         db.session.add(usuario_dto)
         db.session.commit()

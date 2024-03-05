@@ -32,7 +32,6 @@ class RepositorioCompaniasSQLite(RepositorioPropiedades):
         raise NotImplementedError
 
     def agregar(self, propiedad: Propiedad):
-        print("debug que tipo?-->", propiedad)
         propiedad_dto = self._fabrica_propiedades.crear_objeto(propiedad, MapeadorPropiedad())
         db.session.add(propiedad_dto)
         db.session.commit()

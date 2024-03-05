@@ -10,6 +10,7 @@ def registrar_handlers():
 
 def importar_modelos_alchemy():
     import propiedadalpes.modulos.companias.infraestructura.dto
+    import propiedadalpes.modulos.usuarios.infraestructura.dto
 
 def comenzar_consumidor():
     """

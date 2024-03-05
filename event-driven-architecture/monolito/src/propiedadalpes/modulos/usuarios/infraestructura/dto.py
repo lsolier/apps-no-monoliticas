@@ -6,7 +6,7 @@ class Usuario(db.Model):
     __tablename__ = "usuarios"
     id = db.Column(db.String(40), primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    numero_identificacion = db.Column(db.String(40), nullable=False)
+    numero_identificacion = db.Column(db.String(40), nullable=True)
 
 class EventosUsuario(db.Model):
     __tablename__ = "eventos_usuario"
