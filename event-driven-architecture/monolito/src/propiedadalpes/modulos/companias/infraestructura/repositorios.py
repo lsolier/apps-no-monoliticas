@@ -32,7 +32,6 @@ class RepositorioCompaniasSQLite(RepositorioCompanias):
         raise NotImplementedError
 
     def agregar(self, compania: Compania):
-        print("debug que tipo?-->", compania)
         compania_dto = self._fabrica_companias.crear_objeto(compania, MapeadorCompania())
         db.session.add(compania_dto)
         db.session.commit()

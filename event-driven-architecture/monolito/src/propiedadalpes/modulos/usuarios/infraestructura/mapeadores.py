@@ -17,6 +17,14 @@ class MapeadorUsuario(Mapeador):
 
         return usuario
     
+    def entidad_a_dto(self, entidad: Usuario) -> UsuarioDTO:
+        
+        usuario_dto = UsuarioDTO()
+        usuario_dto.id = str(entidad.id)
+        usuario_dto.nombre = entidad.nombre
+
+        return usuario_dto
+    
 class MapeadorEventosUsuario(Mapeador):
 
     # Versiones aceptadas
