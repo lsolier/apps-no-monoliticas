@@ -26,7 +26,7 @@ class FabricaPropiedades(Fabrica):
             raise TipoObjetoNoExisteEnDominioCompaniaExcepcion()
 
     def crear_objeto(self, obj: any, mapeador: Mapeador) -> any:
-        if mapeador.obtener_tipo() == Compania.__class__:
+        if mapeador.obtener_tipo() == Propiedad.__class__:
             return mapeador.entidad_a_dto(obj)
         else:
             raise TipoObjetoNoExisteEnDominioCompaniaExcepcion()

@@ -12,9 +12,9 @@ from propiedadalpes.modulos.propiedades.aplicacion.servicios import ServicioComp
 from propiedadalpes.seedwork.dominio.excepciones import ExcepcionDominio
 
 
-bp = api.crear_blueprint('propiedades', '/gestion_propiedades')
+bp = api.crear_blueprint('gestion_propiedades', '/gestion_propiedades')
 
-@bp.route('/añadir_propiedad', methods=('POST',))
+@bp.route('/propiedades', methods=('POST',))
 def ingestar():
     try:
         compania_dict = request.json
@@ -23,7 +23,7 @@ def ingestar():
         compania_dto = map_compania.externo_a_dto(compania_dict)
 
         sr = ServicioCompania()
-        dto_final = sr.ingestar_compania(compania_dto)
+        dto_final = sr.ingestar_propiedad(compania_dto)
 
         return map_compania.dto_a_externo(dto_final)
     except ExcepcionDominio as e:

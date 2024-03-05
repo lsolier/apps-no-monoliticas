@@ -11,6 +11,7 @@ def registrar_handlers():
 def importar_modelos_alchemy():
     import propiedadalpes.modulos.companias.infraestructura.dto
     import propiedadalpes.modulos.usuarios.infraestructura.dto
+    import propiedadalpes.modulos.propiedades.infraestructura.dto
 
 def comenzar_consumidor():
     """
@@ -58,10 +59,12 @@ def create_app(configuracion={}):
      # Importa Blueprints
     from . import companias
     from . import usuarios
+    from . import propiedades
 
     # Registro de Blueprints
     app.register_blueprint(companias.bp)
     app.register_blueprint(usuarios.bp)
+    app.register_blueprint(propiedades.bp)
 
     @app.route("/spec")
     def spec():

@@ -21,7 +21,7 @@ class ServicioCompania(Servicio):
         return self._fabrica_propiedades
     
     def ingestar_propiedad(self, propiedad_dto: PropiedadDTO) -> PropiedadDTO:
-        repositorio = self._fabrica_repositorio.crear_objeto(RepositorioPropiedades.__class__)
+        repositorio = self._fabrica_repositorio.crear_objeto(RepositorioPropiedades)
         propiedad: Propiedad = self._fabrica_propiedades.crear_objeto_entidad(propiedad_dto, MapeadorPropiedad())
         repositorio.agregar(propiedad)
         return self._fabrica_propiedades.crear_objeto(propiedad, MapeadorPropiedad())

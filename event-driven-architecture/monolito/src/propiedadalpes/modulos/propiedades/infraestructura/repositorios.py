@@ -32,6 +32,7 @@ class RepositorioCompaniasSQLite(RepositorioPropiedades):
         raise NotImplementedError
 
     def agregar(self, propiedad: Propiedad):
+        print("debug-propiedad-->", propiedad)
         propiedad_dto = self._fabrica_propiedades.crear_objeto(propiedad, MapeadorPropiedad())
         db.session.add(propiedad_dto)
         db.session.commit()
@@ -41,6 +42,10 @@ class RepositorioCompaniasSQLite(RepositorioPropiedades):
         raise NotImplementedError
 
     def eliminar(self, propiedad_id: UUID):
+        # TODO
+        raise NotImplementedError
+    
+    def existe_por_numero_id_y_pais(self, str_1: str, str_2: str):
         # TODO
         raise NotImplementedError
 
@@ -66,5 +71,9 @@ class RepositorioEventosCompaniaSQLAlchemy(RepositorioEventosPropiedades):
         raise NotImplementedError
 
     def eliminar(self, entity_id: UUID):
+        # TODO
+        raise NotImplementedError
+
+    def existe_por_numero_id_y_pais(self, str_1: str, str_2: str):
         # TODO
         raise NotImplementedError
