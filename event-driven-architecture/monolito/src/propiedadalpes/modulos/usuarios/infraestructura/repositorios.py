@@ -2,7 +2,7 @@ from propiedadalpes.config.db import db
 from propiedadalpes.modulos.usuarios.dominio.repositorios import RepositorioUsuarios, RepositorioEventosUsuarios
 from propiedadalpes.modulos.usuarios.dominio.fabricas import FabricaUsuarios
 from propiedadalpes.modulos.usuarios.dominio.entidades import Usuario
-from .dto import Usuario as UsuarioDTO, EventosUsuario
+from .dto import Usuario as UsuarioDTO
 from .mapeadores import MapeadorEventosUsuario, MapeadorUsuario
 from uuid import UUID
 from pulsar.schema import *
