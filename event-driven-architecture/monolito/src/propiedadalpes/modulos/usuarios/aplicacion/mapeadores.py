@@ -10,3 +10,12 @@ class MapeadorUsuario(RepMap):
 
     def obtener_tipo(self) -> type:
         return Usuario.__class__
+    
+    def dto_a_entidad(self, dto: UsuarioDTO) -> Usuario:
+        usuario = Usuario()
+        usuario.nombre = dto.nombre
+        return usuario
+    
+    def entidad_a_dto(self, entidad: Usuario) -> UsuarioDTO:
+        _id = str(entidad.id)
+        return UsuarioDTO( _id, entidad.nombre)
